@@ -9,7 +9,7 @@ plugins {
 
 apollo {
     service("service") {
-        packageName.set("com.franco.graphqltest")
+        packageName.set("com.franco.rickandmorty_xml")
     }
 }
 
