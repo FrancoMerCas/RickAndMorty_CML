@@ -1,6 +1,16 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id "com.google.dagger.hilt.android"
+    id 'androidx.navigation.safeargs.kotlin'
+    id "com.apollographql.apollo3" version "3.8.2"
+}
+
+apollo {
+    service("service") {
+        packageName.set("com.franco.graphqltest")
+    }
 }
 
 android {
@@ -30,9 +40,22 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures{
+        dataBinding true
+        viewBinding true
+    }
+
 }
 
 dependencies {
+    def lifecycle_version = "2.3.1"
+    def nav_version = "2.5.3"
+    def coil_kt_version = '1.4.0'
+    def hilt_version = "2.44"
+    def lottie_version = "5.2.0"
+    def graphql_version = "3.8.2"
+    def paging_version = "3.0.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -41,4 +64,47 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    //JSON
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    // Annotation processor
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    //OkHTTP
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
+
+    //CardView
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    //Dagger dependencie
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    //Image Manager with COIL-KT
+    implementation "io.coil-kt:coil:$coil_kt_version"
+    implementation "io.coil-kt:coil-gif:$coil_kt_version"
+
+    //Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    //ApolloGraphQL
+    implementation "com.apollographql.apollo3:apollo-runtime:$graphql_version"
+
+    //Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    //Image Manager with COIL-KT
+    implementation "io.coil-kt:coil:$coil_kt_version"
+    implementation "io.coil-kt:coil-gif:$coil_kt_version"
 }
